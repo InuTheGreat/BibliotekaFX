@@ -6,4 +6,5 @@ module biblioteka.projekt {
     exports pl;
     exports pl.library;
     opens pl.controller to javafx.fxml;
+    opens pl.library.model to javafx.base;
 }

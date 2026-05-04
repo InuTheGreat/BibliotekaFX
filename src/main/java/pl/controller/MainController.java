@@ -32,7 +32,20 @@ public class MainController {
 
     public void loadViewCenter(String fxml) {
         try {
-            Parent view = FXMLLoader.load(getClass().getResource(fxml));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+            Parent view = loader.load();
+
+            Object controller = loader.getController();
+
+            if(controller instanceof AdminMainPaneController){
+                AdminMainPaneController adminMainPaneController = (AdminMainPaneController) controller;
+                adminMainPaneController.setMainController(this);
+            }
+
+
+            BorderPane.setAlignment(view, javafx.geometry.Pos.CENTER);
+
+            view.setStyle("-fx-max-width: Infinity; -fx-max-height: Infinity;");
             rootPane.setCenter(view);
 
         } catch (IOException e) {
