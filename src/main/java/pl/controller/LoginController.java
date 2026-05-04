@@ -64,6 +64,7 @@ public class LoginController {
 
             Stage stage = (Stage) loginFieldId.getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setMaximized(true);
             stage.setTitle("Library v0.1.1");
 
         } catch (IOException e) {
