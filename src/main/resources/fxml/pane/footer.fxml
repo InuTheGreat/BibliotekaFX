@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<HBox alignment="CENTER_LEFT"
+      prefHeight="40.0"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pl.controller.bottom.PaneBottomPaneController"
+      style="-fx-border-color: #ddd; -fx-border-width: 1 0 0 0;">
+
+    <padding>
+        <Insets left="20.0" right="20.0"/>
+    </padding>
+
+    <children>
+        <Label fx:id="dbLabel" text="DB: MySQL"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="loginLabel" text="Zalogowany: admin"/>
+
+        <Region HBox.hgrow="ALWAYS"/>
+
+        <Label fx:id="dateLabel" text="Data: 2026-05-05 17:00"/>
+    </children>
+
+</HBox>
