@@ -50,4 +50,21 @@ public class AuthorDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void updateAuthorByID(int id, String firstName, String lastName) {
+        String sql = "Update author set first_name = ?, last_name = ? where id = ?";
+
+        try(Connection connection = ConnectionDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setInt(3, id);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
