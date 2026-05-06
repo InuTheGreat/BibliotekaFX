@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
+import pl.controller.administrator.AdminMainPaneController;
 import pl.controller.bottom.PaneBottomPaneController;
 import pl.library.model.User;
 
@@ -25,7 +26,7 @@ public class MainController {
             paneBottomPaneController.setupFooter(currentUser);
 
             if (user.getRole().equals("ADMINISTRATOR")) {
-                loadViewCenter("/fxml/adminDashboard.fxml");
+                loadViewCenter("/fxml/administrator/adminDashboard.fxml");
             } else {
                 loadViewCenter("/fxml/userDashboard.fxml");
             }

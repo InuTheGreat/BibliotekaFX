@@ -1,15 +1,21 @@
-package pl.controller;
+package pl.controller.administrator.author;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pl.library.dao.AuthorDao;
 import pl.library.model.Author;
 import pl.view.ViewModel;
 
+import java.io.IOException;
 import java.util.List;
 
 public class AuthorController {
@@ -36,6 +42,9 @@ public class AuthorController {
 
     @FXML
     private CheckBox checkId;
+
+    @FXML
+    private Button addAuthotBtn;
 
     @FXML
     private Button deleteBtn;
@@ -100,8 +109,8 @@ public class AuthorController {
 
             if (saveBtn.isDisabled()) return;
 
-            saveBtn.setDisable(true);
             authorDao.updateAuthorByID(Integer.parseInt(idLabel.getText()), nameField.getText(), surnameField.getText());
+
             Author selected = tableViewId.getSelectionModel().getSelectedItem();
 
             if (selected != null) {
@@ -111,14 +120,13 @@ public class AuthorController {
                 tableViewId.refresh();
             }
 
-            idLabel.setText("-");
-            nameField.clear();
-            surnameField.clear();
-            originalName = null;
-            originalSurname = null;
-            saveBtn.setDisable(true);
+            originalName = nameField.getText();
+            originalSurname = surnameField.getText();
+            updateSaveButton();
 
         });
+
+        addAuthotBtn.setOnAction(e -> openAddWindow());
     }
 
     private void loadDataAuthors()
@@ -145,5 +153,28 @@ public class AuthorController {
         boolean changed = (!nameField.getText().equals(originalName) || !surnameField.getText().equals(originalSurname));
 
         saveBtn.setDisable(!changed);
+    }
+
+    private void openAddWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/administrator/author/addAuthor.fxml"));
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Kreator Autora");
+            stage.setScene(new Scene(root));
+
+            stage.setWidth(300);
+            stage.setHeight(220);
+            stage.setResizable(false);
+
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+
+            loadDataAuthors();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

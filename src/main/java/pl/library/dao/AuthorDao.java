@@ -67,4 +67,21 @@ public class AuthorDao {
             throw new RuntimeException(e);
         }
     }
+
+    public void addAuthor(String name, String surname) {
+
+        String sql = "Insert into author (first_name, last_name) values (?, ?)";
+
+        try(Connection connection = ConnectionDB.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, surname);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
