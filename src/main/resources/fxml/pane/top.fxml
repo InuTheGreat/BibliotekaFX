@@ -5,13 +5,13 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.Region?>
 
-<ToolBar maxHeight="600.0" prefHeight="75.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.controller.pane.top.PaneTopController">
+<ToolBar maxHeight="600.0" prefHeight="75.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.controller.pane.top.PaneTopController">
   <items>
-    <Button fx:id="startBoardBtn" mnemonicParsing="false" prefHeight="62.0" prefWidth="157.0" text="Ekran Startowy">
+    <Button fx:id="startBoardBtn" mnemonicParsing="false" prefHeight="62.0" prefWidth="167.0" text="Ekran Startowy">
          <padding>
             <Insets bottom="5.0" />
          </padding></Button>
-      <Button fx:id="setupBtn" mnemonicParsing="false" prefHeight="62.0" prefWidth="114.0" text="Ustawienia">
+      <Button fx:id="setupBtn" mnemonicParsing="false" prefHeight="62.0" prefWidth="126.0" text="Zmień Poświadczenia">
          <padding>
             <Insets bottom="5.0" />
          </padding></Button>

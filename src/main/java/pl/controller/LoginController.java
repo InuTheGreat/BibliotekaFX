@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import pl.library.model.User;
 import pl.library.service.UserService;
+import pl.session.UserSession;
 
 import java.io.IOException;
 
@@ -55,12 +56,15 @@ public class LoginController {
 
     public void openMain(User user) {
         try {
+
+            UserSession.setUser(user);
+
             FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/main.fxml"));
             Parent root = loader.load();
 
             MainController mainController = loader.getController();
 
-            mainController.initUser(user);
+            mainController.initUser();
 
             Stage stage = (Stage) loginFieldId.getScene().getWindow();
             stage.setScene(new Scene(root));

@@ -8,6 +8,7 @@ import pl.controller.administrator.AdminMainPaneController;
 import pl.controller.pane.bottom.PaneBottomPaneController;
 import pl.controller.pane.top.PaneTopController;
 import pl.library.model.User;
+import pl.session.UserSession;
 
 import java.io.IOException;
 
@@ -18,18 +19,16 @@ public class MainController {
 
     private PaneBottomPaneController paneBottomPaneController;
     private PaneTopController paneTopController;
-    private User currentUser;
 
-    public void initUser(User user) {
-        if(user != null) {
-            this.currentUser = user;
+    public void initUser() {
+
+             User user = UserSession.getUser();
 
             loadFooter("/fxml/pane/footer.fxml");
-            paneBottomPaneController.setupFooter(currentUser);
+            paneBottomPaneController.setupFooter(user);
 
             loadTop("/fxml/pane/top.fxml");
             paneTopController.setupMainController(this);
-            paneTopController.setupUserFromController(currentUser);
 
             if (user.getRole().equals("ADMINISTRATOR")) {
                 loadViewCenter("/fxml/administrator/adminDashboard.fxml");
@@ -37,9 +36,6 @@ public class MainController {
                 loadViewCenter("/fxml/userDashboard.fxml");
             }
 
-        } else {
-            System.out.println("Pusta referencja");
-        }
     }
 
     public void loadViewCenter(String fxml) {
@@ -92,7 +88,7 @@ public class MainController {
     }
 
     public void goToDashboard() {
-        if(currentUser.getRole().equals("ADMINISTRATOR")) {
+        if(UserSession.getUser().getRole().equals("ADMINISTRATOR")) {
             loadViewCenter("/fxml/administrator/adminDashboard.fxml");
         } else {
             loadViewCenter("/fxml/userDashboard.fxml");
