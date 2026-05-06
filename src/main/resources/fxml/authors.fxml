@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" spacing="20"
+      xmlns="http://javafx.com/javafx/25"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pl.controller.AuthorController">
+
+    <padding>
+        <Insets bottom="30" left="30" right="30" top="30" />
+    </padding>
+
+    <children>
+
+        <Label text="Autorzy">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+
+        <HBox alignment="CENTER_LEFT" spacing="20" VBox.vgrow="ALWAYS">
+
+            <TableView fx:id="tableViewId"
+                       prefHeight="400"
+                       HBox.hgrow="ALWAYS">
+
+                <columns>
+                    <TableColumn fx:id="autId" prefWidth="80" text="ID" />
+                    <TableColumn fx:id="autNamId" prefWidth="180" text="Imię" />
+                    <TableColumn fx:id="autSurnId" prefWidth="220" text="Nazwisko" />
+                </columns>
+
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </padding>
+
+            </TableView>
+
+            <VBox alignment="TOP_CENTER"
+                  prefWidth="250"
+                  spacing="12"
+                  style="-fx-border-color: #ccc; -fx-border-width: 0 0 0 1; -fx-padding: 15;">
+
+                <Label text="Szczegóły">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+
+                <Label text="ID:" />
+                <Label fx:id="idLabel" text="-" />
+
+                <Label text="Imię:" />
+                <TextField fx:id="nameField" promptText="Wpisz imię" prefWidth="180"/>
+
+                <Label text="Nazwisko:" />
+                <TextField fx:id="surnameField" promptText="Wpisz nazwisko" prefWidth="180"/>
+
+                <VBox spacing="10" alignment="CENTER">
+                    <Button fx:id="saveBtn" text="Zapisz" prefWidth="140"/>
+                    <Button fx:id="deleteBtn" text="Usuń" prefWidth="140" disable="true"/>
+                    <CheckBox fx:id="checkId" text="Potwierdź operację"/>
+                </VBox>
+
+            </VBox>
+
+        </HBox>
+
+    </children>
+</VBox>

@@ -1,27 +1,28 @@
 package pl.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 public class AdminMainPaneController {
 
-    @FXML
-    private Button addAuthorId;
+    private MainController mainController;
+
+    public void setMainController(MainController mainController) {
+        this.mainController = mainController;
+    }
 
     @FXML
-    private Button addBookId;
-
-    @FXML
-    private Button addGenreId;
-
-    @FXML
-    private Button addPublisherId;
+    private Button authorBtnId;
 
     @FXML
     private GridPane gridPaneId;
 
     @FXML
-    private Button setupId;
-
+    public void initialize() {
+        authorBtnId.addEventHandler(ActionEvent.ACTION, e ->{
+            mainController.loadViewCenter("/fxml/authors.fxml");
+        });
+    }
 }
