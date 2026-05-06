@@ -1,4 +1,4 @@
-package pl.controller.bottom;
+package pl.controller.pane.bottom;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

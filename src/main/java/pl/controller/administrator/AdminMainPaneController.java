@@ -1,9 +1,10 @@
-package pl.controller;
+package pl.controller.administrator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import pl.controller.MainController;
 
 public class AdminMainPaneController {
 
@@ -22,7 +23,7 @@ public class AdminMainPaneController {
     @FXML
     public void initialize() {
         authorBtnId.addEventHandler(ActionEvent.ACTION, e ->{
-            mainController.loadViewCenter("/fxml/authors.fxml");
+            mainController.loadViewCenter("/fxml/administrator/author/authors.fxml");
         });
     }
 }
