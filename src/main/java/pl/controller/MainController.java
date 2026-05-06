@@ -5,7 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import pl.controller.administrator.AdminMainPaneController;
-import pl.controller.bottom.PaneBottomPaneController;
+import pl.controller.pane.bottom.PaneBottomPaneController;
+import pl.controller.pane.top.PaneTopController;
 import pl.library.model.User;
 
 import java.io.IOException;
@@ -16,6 +17,7 @@ public class MainController {
     private BorderPane rootPane;
 
     private PaneBottomPaneController paneBottomPaneController;
+    private PaneTopController paneTopController;
     private User currentUser;
 
     public void initUser(User user) {
@@ -24,6 +26,10 @@ public class MainController {
 
             loadFooter("/fxml/pane/footer.fxml");
             paneBottomPaneController.setupFooter(currentUser);
+
+            loadTop("/fxml/pane/top.fxml");
+            paneTopController.setupMainController(this);
+            paneTopController.setupUserFromController(currentUser);
 
             if (user.getRole().equals("ADMINISTRATOR")) {
                 loadViewCenter("/fxml/administrator/adminDashboard.fxml");
@@ -69,6 +75,27 @@ public class MainController {
             rootPane.setBottom(footer);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void loadTop(String fxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource(fxml));
+            Parent top = loader.load();
+            paneTopController = loader.getController();
+
+            rootPane.setTop(top);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void goToDashboard() {
+        if(currentUser.getRole().equals("ADMINISTRATOR")) {
+            loadViewCenter("/fxml/administrator/adminDashboard.fxml");
+        } else {
+            loadViewCenter("/fxml/userDashboard.fxml");
         }
     }
 }

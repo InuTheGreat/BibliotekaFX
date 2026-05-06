@@ -9,11 +9,7 @@ public class UserService {
 
     public User login(String email, String password) {
 
-
         User user = userDao.getUserByEmail(email);
-
-        System.out.println("USER FROM DAO: " + user);
-
 
         if (user != null && user.getPassword().equals(password)) {
             System.out.println("LOGIN OK");

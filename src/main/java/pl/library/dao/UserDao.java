@@ -36,4 +36,20 @@ public class UserDao {
         }
         return null;
     }
+
+    public void updatePassword(int id, String newPassword) {
+        String sql = "UPDATE reader SET password = ? WHERE id = ?";
+
+        try (Connection connection = ConnectionDB.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, newPassword);
+            statement.setInt(2, id);
+            statement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

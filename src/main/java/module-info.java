@@ -7,7 +7,9 @@ module biblioteka.projekt {
     exports pl.library;
     opens pl.controller to javafx.fxml;
     opens pl.library.model to javafx.base;
-    opens pl.controller.bottom to javafx.fxml;
+    opens pl.controller.pane.bottom to javafx.fxml;
     opens pl.controller.administrator.author to javafx.fxml;
     opens pl.controller.administrator to javafx.fxml;
+    opens pl.controller.pane.top to javafx.fxml;
+    opens pl.controller.pane.top.setup to javafx.fxml;
 }
