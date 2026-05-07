@@ -15,7 +15,6 @@ import pl.library.dao.AuthorDao;
 import pl.library.model.Author;
 import pl.view.ViewModel;
 
-import java.io.IOException;
 import java.util.List;
 
 public class AuthorController {

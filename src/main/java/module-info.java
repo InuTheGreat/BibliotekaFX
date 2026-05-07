@@ -12,4 +12,5 @@ module biblioteka.projekt {
     opens pl.controller.administrator to javafx.fxml;
     opens pl.controller.pane.top to javafx.fxml;
     opens pl.controller.pane.top.setup to javafx.fxml;
+    opens pl.controller.administrator.publisher to javafx.fxml;
 }

@@ -18,12 +18,19 @@ public class AdminMainPaneController {
     private Button authorBtnId;
 
     @FXML
+    private Button publisherBtnId;
+
+    @FXML
     private GridPane gridPaneId;
 
     @FXML
     public void initialize() {
         authorBtnId.addEventHandler(ActionEvent.ACTION, e ->{
             mainController.loadViewCenter("/fxml/administrator/author/authors.fxml");
+        });
+
+        publisherBtnId.addEventHandler(ActionEvent.ACTION, e ->{
+            mainController.loadViewCenter("/fxml/administrator/publisher/publishers.fxml");
         });
     }
 }
