@@ -21,6 +21,9 @@ public class AdminMainPaneController {
     private Button publisherBtnId;
 
     @FXML
+    private Button genreBtnId;
+
+    @FXML
     private GridPane gridPaneId;
 
     @FXML
@@ -31,6 +34,10 @@ public class AdminMainPaneController {
 
         publisherBtnId.addEventHandler(ActionEvent.ACTION, e ->{
             mainController.loadViewCenter("/fxml/administrator/publisher/publishers.fxml");
+        });
+
+        genreBtnId.addEventHandler(ActionEvent.ACTION, e -> {
+            mainController.loadViewCenter("/fxml/administrator/genre/genres.fxml");
         });
     }
 }

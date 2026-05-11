@@ -16,7 +16,7 @@
       spacing="20"
       xmlns="http://javafx.com/javafx/25"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="pl.controller.administrator.publisher.PublisherController">
+      fx:controller="pl.controller.administrator.genre.GenreController">
 
     <padding>
         <Insets bottom="30" left="30" right="30" top="30"/>
@@ -24,7 +24,7 @@
 
     <children>
 
-        <Label text="Wydawnictwa">
+        <Label text="Gatunki">
             <font>
                 <Font size="24.0"/>
             </font>
@@ -39,11 +39,11 @@
                        HBox.hgrow="ALWAYS">
 
                 <columns>
-                    <TableColumn fx:id="pubId"
+                    <TableColumn fx:id="genId"
                                  prefWidth="80"
                                  text="ID"/>
 
-                    <TableColumn fx:id="pubNameId"
+                    <TableColumn fx:id="genNameId"
                                  prefWidth="300"
                                  text="Nazwa"/>
                 </columns>
@@ -72,16 +72,16 @@
                 <Label fx:id="idLabel"
                        text="-"/>
 
-                <Label text="Nazwa wydawnictwa:"/>
+                <Label text="Nazwa gatunku:"/>
 
                 <TextField fx:id="nameField"
                            prefWidth="180"
                            promptText="Wpisz nazwę"/>
 
-                <Button fx:id="addPublisherBtn"
+                <Button fx:id="addGenreBtn"
                         mnemonicParsing="false"
                         prefWidth="160.0"
-                        text="Dodaj wydawnictwo"/>
+                        text="Dodaj gatunek"/>
 
                 <Region prefHeight="20.0"/>
 

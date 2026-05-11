@@ -2,6 +2,8 @@ module biblioteka.projekt {
     requires java.sql;
     requires javafx.controls;
     requires javafx.fxml;
+    //requires biblioteka.projekt;
+    requires javafx.base;
 
     exports pl;
     exports pl.library;
@@ -13,4 +15,5 @@ module biblioteka.projekt {
     opens pl.controller.pane.top to javafx.fxml;
     opens pl.controller.pane.top.setup to javafx.fxml;
     opens pl.controller.administrator.publisher to javafx.fxml;
+    opens pl.controller.administrator.genre to javafx.fxml;
 }
