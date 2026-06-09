@@ -68,7 +68,7 @@ public class AuthorController {
         autSurnId.setCellValueFactory(new PropertyValueFactory<>("surname"));
         authorsList = FXCollections.observableArrayList();
         tableViewId.setItems(authorsList);
-
+        saveBtn.setDisable(true);
         checkId.selectedProperty().bindBidirectional(viewModel.confirmPropertyProperty());
         deleteBtn.disableProperty().bind(viewModel.confirmPropertyProperty().not());
         nameField.textProperty().addListener((obs, old, val) -> updateSaveButton());
