@@ -1,9 +1,6 @@
 package pl.controller.administrator.book;
-
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +11,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
+import pl.library.dao.AuthorDao;
 import pl.library.dao.BookDao;
 import pl.library.dto.BookView;
+import pl.library.model.Author;
 
 import java.util.List;
 
@@ -25,12 +23,13 @@ public class BookController {
 
     private ObservableList<BookView> bookList;
     private BookDao bookDao = new BookDao();
+    private AuthorDao authorDao = new AuthorDao();
 
     @FXML
     private Button addBookBtn;
 
     @FXML
-    private ListView<String> authorsListView;
+    private ListView<Author> authorsListView;
 
     @FXML
     private TableColumn<BookView, Boolean> availableColumn;
@@ -113,6 +112,7 @@ public class BookController {
             titleLabel.setText(selected.getTitle());
             yearLabel.setText(String.valueOf(selected.getPublicationYear()));
             pagesLabel.setText(String.valueOf(selected.getPages()));
+            authorsListView.getItems().setAll(authorDao.findByBookId(selected.getId()));
 
         });
 
