@@ -59,7 +59,7 @@ biblioteka_projekt/
     │       ├── session/
     │       │   └── UserSession.java              # zarządzanie sesją zalogowanego użytkownika
     │       └── view/
-    │           └── ViewModel.java                # helper do bindowania właściwości w widokach
+    │           └── ViewModel.java                # klasa pomocnicza do wiązania właściwości w widokach
     └── resources/
         └── fxml/
             ├── administrator/
