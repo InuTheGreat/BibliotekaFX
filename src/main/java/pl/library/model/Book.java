@@ -14,9 +14,8 @@ public class Book {
     private int publisherId;
     private int locationId;
     private int genreId;
-    private List<Integer> authorIds;
 
-    public Book(int id, String title, String isbn, int publicationYear, int pages, int publisherId, int locationId, int genreId, List<Integer> authorIds) {
+    public Book(int id, String title, String isbn, int publicationYear, int pages, int publisherId, int locationId, int genreId) {
         this.id = id;
         this.title = title;
         this.isbn = isbn;
@@ -26,7 +25,6 @@ public class Book {
         this.publisherId = publisherId;
         this.locationId = locationId;
         this.genreId = genreId;
-        this.authorIds = authorIds;
     }
 
     public int getId() {
@@ -101,7 +99,4 @@ public class Book {
         this.genreId = genreId;
     }
 
-    public List<Integer> getAuthorIds() {
-        return authorIds;
-    }
 }

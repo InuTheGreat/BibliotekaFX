@@ -3,13 +3,19 @@ package pl.controller.administrator.book;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import pl.library.dao.BookDao;
 import pl.library.dto.BookView;
 
@@ -90,6 +96,28 @@ public class BookController {
 
         loadsData();
 
+        tableViewId.getSelectionModel().selectedItemProperty().addListener((obs, old, selected) -> {
+
+            if(selected == null) {
+               return;
+            }
+
+            String isAvailable = String.valueOf(selected.isAvailable());
+            availableLabel.setText(isAvailable);
+
+            idLabel.setText(String.valueOf(selected.getId()));
+            genreLabel.setText(selected.getGenreName());
+            isbnLabel.setText(selected.getIsbn());
+            locationLabel.setText(selected.getLocation());
+            publisherLabel.setText(selected.getPublisherName());
+            titleLabel.setText(selected.getTitle());
+            yearLabel.setText(String.valueOf(selected.getPublicationYear()));
+            pagesLabel.setText(String.valueOf(selected.getPages()));
+
+        });
+
+        addBookBtn.setOnAction(e -> openAddWindow());
+
     }
 
 
@@ -97,6 +125,25 @@ public class BookController {
     private void loadsData() {
         List<BookView> temp = bookDao.getAllBooks();
         tableViewId.getItems().setAll(temp);
+    }
+
+    private void openAddWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(this.getClass().getResource("/fxml/administrator/book/addBooks.fxml"));
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Kreator Książki");
+            stage.setScene(new Scene(root));
+
+            stage.showAndWait();
+
+            loadsData();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -4,6 +4,8 @@ module biblioteka.projekt {
     requires javafx.fxml;
     //requires biblioteka.projekt;
     requires javafx.base;
+    requires javafx.graphics;
+    //requires biblioteka.projekt;
     //requires biblioteka.projekt;
 
     exports pl;

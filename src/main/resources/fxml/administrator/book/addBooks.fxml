@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pl.controller.administrator.book.BookAddController"
+      spacing="12"
+      alignment="TOP_CENTER">
+
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label text="Dodaj książkę">
+        <font>
+            <Font size="20"/>
+        </font>
+    </Label>
+
+    <TextField fx:id="titleField" promptText="Tytuł" />
+    <TextField fx:id="isbnField" promptText="ISBN" />
+    <TextField fx:id="yearField" promptText="Rok wydania" />
+    <TextField fx:id="pagesField" promptText="Liczba stron" />
+
+    <ComboBox fx:id="publisherCombo" promptText="Wydawnictwo" />
+    <ComboBox fx:id="genreCombo" promptText="Gatunek" />
+
+    <TextField fx:id="buildingField" promptText="Budynek (np. Biblioteka Główna)" />
+    <TextField fx:id="roomField" promptText="Sala (np. A1)" />
+    <TextField fx:id="shelfField" promptText="Półka (np. 3)" />
+
+    <Label text="Autorzy (możesz zaznaczyć wielu)" />
+
+    <ListView fx:id="authorsListView" prefHeight="150" />
+
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="Zapisz" fx:id="saveBtn" />
+        <Button text="Anuluj" fx:id="cancelBtn" />
+    </HBox>
+
+</VBox>
