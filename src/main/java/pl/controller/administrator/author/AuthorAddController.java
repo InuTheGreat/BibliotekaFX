@@ -37,7 +37,7 @@ public class AuthorAddController {
 
         Stage stage = (Stage) surnameField.getScene().getWindow();
 
-        if(name == null || surname == null) return;
+        if(name.isEmpty() || surname.isEmpty()) return;
 
         try {
             authorDao.addAuthor(name, surname);
