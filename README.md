@@ -13,7 +13,9 @@ Aplikacja desktopowa zbudowana w **JavaFX + MySQL**.
 ## Struktura projektu
 
 ```
-src/
+biblioteka_projekt/
+├── pom.xml                                   # konfiguracja Maven
+└── src/
 └── main/
     ├── java/
     │   ├── module-info.java
@@ -45,9 +47,36 @@ src/
     │       │   │   ├── GenreDao.java
     │       │   │   ├── PublisherDao.java
     │       │   │   └── UserDao.java
-    │       │   ├── model/                        # modele danych
-    │       │   └── service/                      # logika biznesowa
-    │       ├── session/                      # zarządzanie sesją zalogowanego użytkownika
-    │       └── view/                         # helpery widoków
-    └── resources/                            # pliki FXML, CSS, obrazki itp.
+    │       │   ├── model/
+    │       │   │   ├── Author.java
+    │       │   │   ├── Genre.java
+    │       │   │   ├── Publisher.java
+    │       │   │   └── User.java
+    │       │   └── service/
+    │       │       ├── password/
+    │       │       │   └── UserPassword.java         # logika zmiany hasła
+    │       │       └── UserService.java              # logika biznesowa użytkownika
+    │       ├── session/
+    │       │   └── UserSession.java              # zarządzanie sesją zalogowanego użytkownika
+    │       └── view/
+    │           └── ViewModel.java                # helper do bindowania właściwości w widokach
+    └── resources/
+        └── fxml/
+            ├── administrator/
+            │   ├── author/
+            │   │   ├── addAuthor.fxml            # formularz dodawania autora
+            │   │   └── authors.fxml              # widok listy autorów
+            │   ├── genre/
+            │   │   └── genres.fxml               # widok listy gatunków
+            │   ├── publisher/
+            │   │   └── publishers.fxml           # widok listy wydawnictw
+            │   └── adminDashboard.fxml           # dashboard administratora
+            ├── pane/
+            │   ├── setup/
+            │   │   └── changePassword.fxml       # formularz zmiany hasła
+            │   ├── footer.fxml                   # widok stopki
+            │   └── top.fxml                      # widok górnego paska
+            ├── loginPane.fxml                    # ekran logowania
+            ├── main.fxml                         # główny widok aplikacji
+            └── userDashboard.fxml                # dashboard użytkownika
 ```
