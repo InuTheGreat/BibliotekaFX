@@ -93,6 +93,11 @@ public class PublisherController {
 
     private void updateButton() {
 
+        if(tableViewId.getItems().isEmpty()) {
+            addPublisherBtn.setDisable(nameField.getText().trim().isEmpty());
+            return;
+        }
+
         if (originalName == null) {
             saveBtn.setDisable(true);
             addPublisherBtn.setDisable(true);

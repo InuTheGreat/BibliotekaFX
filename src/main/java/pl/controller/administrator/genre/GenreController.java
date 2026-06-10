@@ -95,6 +95,11 @@ public class GenreController {
 
     private void updateButton() {
 
+        if(tableViewId.getItems().isEmpty()) {
+            addGenreBtn.setDisable(nameField.getText().trim().isEmpty());
+            return;
+        }
+
         if (originalName == null) {
             saveBtn.setDisable(true);
             addGenreBtn.setDisable(true);
@@ -105,6 +110,7 @@ public class GenreController {
 
         saveBtn.setDisable(!changed);
         addGenreBtn.setDisable(!changed);
+
     }
 
     private void addPublisher() {
