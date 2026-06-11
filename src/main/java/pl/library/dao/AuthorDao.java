@@ -84,4 +84,37 @@ public class AuthorDao {
             throw new RuntimeException(e);
         }
     }
+
+    public List<Author> findByBookId(int bookId) {
+
+        String sql = """
+            SELECT a.id, a.first_name, a.last_name
+            FROM author a
+            JOIN book_author ba ON a.id = ba.author_id
+            WHERE ba.book_id = ?
+            """;
+
+        List<Author> findAuthors = new ArrayList<>();
+
+        try(Connection connection = ConnectionDB.getConnection();
+            PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setInt(1, bookId);
+
+            ResultSet rs = statement.executeQuery();
+
+            while(rs.next()) {
+
+                Author foundAuthor = new Author(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"));
+
+                findAuthors.add(foundAuthor);
+            }
+
+            return findAuthors;
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -27,17 +27,24 @@ public class AdminMainPaneController {
     private GridPane gridPaneId;
 
     @FXML
+    private Button bookBtnId;
+
+    @FXML
     public void initialize() {
         authorBtnId.addEventHandler(ActionEvent.ACTION, e ->{
             mainController.loadViewCenter("/fxml/administrator/author/authors.fxml");
         });
 
-        publisherBtnId.addEventHandler(ActionEvent.ACTION, e ->{
+        publisherBtnId.addEventHandler(ActionEvent.ACTION, e -> {
             mainController.loadViewCenter("/fxml/administrator/publisher/publishers.fxml");
         });
 
         genreBtnId.addEventHandler(ActionEvent.ACTION, e -> {
             mainController.loadViewCenter("/fxml/administrator/genre/genres.fxml");
+        });
+
+        bookBtnId.addEventHandler(ActionEvent.ACTION, e -> {
+            mainController.loadViewCenter("/fxml/administrator/book/books.fxml");
         });
     }
 }

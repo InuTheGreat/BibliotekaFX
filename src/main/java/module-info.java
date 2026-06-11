@@ -4,6 +4,9 @@ module biblioteka.projekt {
     requires javafx.fxml;
     //requires biblioteka.projekt;
     requires javafx.base;
+    requires javafx.graphics;
+    //requires biblioteka.projekt;
+    //requires biblioteka.projekt;
 
     exports pl;
     exports pl.library;
@@ -16,4 +19,6 @@ module biblioteka.projekt {
     opens pl.controller.pane.top.setup to javafx.fxml;
     opens pl.controller.administrator.publisher to javafx.fxml;
     opens pl.controller.administrator.genre to javafx.fxml;
+    opens pl.controller.administrator.book to javafx.fxml;
+    opens pl.library.dto to javafx.base;
 }

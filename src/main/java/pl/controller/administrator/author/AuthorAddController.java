@@ -25,6 +25,7 @@ public class AuthorAddController {
     @FXML
     public void initialize() {
         confirmBtn.setOnAction(e -> addAuthor());
+
         cancelBtn.setOnAction(e -> {
             Stage stage = (Stage) surnameField.getScene().getWindow();
             stage.close();
