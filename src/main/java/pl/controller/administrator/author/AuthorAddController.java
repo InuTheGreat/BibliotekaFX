@@ -43,11 +43,12 @@ public class AuthorAddController {
         try {
             authorDao.addAuthor(name, surname);
             System.out.println("Wykonano pomyślnie!");
+            stage.close();
         } catch (Exception e) {
             e.printStackTrace();
-        } {
-            stage.close();
         }
+
+
     }
 
 }
