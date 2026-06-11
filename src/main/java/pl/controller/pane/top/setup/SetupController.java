@@ -62,12 +62,12 @@ public class SetupController {
         try {
             if (userPassword.isValid(currentUser, pass1)) {
                 userPassword.changePassword(currentUser, pass1);
+                stage.close();
             } else {
                 System.out.println("Błąd podczas zmiany hasła");
-                return;
             }
-        } finally {
-            stage.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
