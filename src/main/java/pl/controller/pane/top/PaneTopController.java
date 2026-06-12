@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.controller.MainController;
@@ -31,6 +32,9 @@ public class PaneTopController {
     private Button setupBtn;
 
     @FXML
+    private Label nameLabelId;
+
+    @FXML
     private Button startBoardBtn;
 
     @FXML
@@ -44,6 +48,8 @@ public class PaneTopController {
             openPasswordWindow();
         });
         logOutBtn.setOnAction(e -> logout());
+
+        nameLabelId.setText("Witaj, " + UserSession.getUser().getName());
     }
 
     private void openPasswordWindow() {
