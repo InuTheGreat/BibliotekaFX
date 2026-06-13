@@ -24,6 +24,9 @@ public class AdminMainPaneController {
     private Button genreBtnId;
 
     @FXML
+    private Button anotherBtnId;
+
+    @FXML
     private GridPane gridPaneId;
 
     @FXML
@@ -52,6 +55,10 @@ public class AdminMainPaneController {
 
         borrowingBtnId.addEventHandler(ActionEvent.ACTION, e -> {
             mainController.loadViewCenter("/fxml/administrator/borrowings.fxml");
+        });
+
+        anotherBtnId.addEventHandler(ActionEvent.ACTION, e -> {
+            mainController.loadViewCenter("/fxml/administrator/another.fxml");
         });
     }
 }
