@@ -6,9 +6,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" spacing="20"
@@ -20,20 +20,26 @@
         <Insets bottom="30" left="30" right="30" top="30"/>
     </padding>
 
-    <Label text="Aktywne wypożyczenia">
+    <Label text="Status Książek">
         <font>
             <Font size="24"/>
         </font>
     </Label>
 
-    <TableView fx:id="tableViewId" prefHeight="500" maxWidth="Infinity">
+    <Label text="Aktywne wypożyczenia">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Label>
+
+    <TableView fx:id="tableViewId" prefHeight="300" maxWidth="Infinity">
         <columns>
             <TableColumn fx:id="borrowingIdColumn" prefWidth="60" text="ID"/>
-            <TableColumn fx:id="titleColumn" prefWidth="250" text="Tytuł"/>
-            <TableColumn fx:id="isbnColumn" prefWidth="150" text="ISBN"/>
+            <TableColumn fx:id="titleColumn" prefWidth="220" text="Tytuł"/>
+            <TableColumn fx:id="isbnColumn" prefWidth="130" text="ISBN"/>
             <TableColumn fx:id="borrowDateColumn" prefWidth="150" text="Data wypożyczenia"/>
-            <TableColumn fx:id="readerNameColumn" prefWidth="200" text="Czytelnik"/>
-            <TableColumn fx:id="readerEmailColumn" prefWidth="200" text="Email"/>
+            <TableColumn fx:id="readerNameColumn" prefWidth="180" text="Czytelnik"/>
+            <TableColumn fx:id="readerEmailColumn" prefWidth="180" text="Email"/>
         </columns>
     </TableView>
 
@@ -42,5 +48,22 @@
         <Region HBox.hgrow="ALWAYS"/>
         <Button fx:id="returnBtn" prefHeight="40" prefWidth="160" text="Zatwierdź zwrot"/>
     </HBox>
+
+    <Label text="Dostępne książki">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Label>
+
+    <TableView fx:id="availableBooksTableView" prefHeight="300" maxWidth="Infinity">
+        <columns>
+            <TableColumn fx:id="availBookIdColumn" prefWidth="60" text="ID"/>
+            <TableColumn fx:id="availTitleColumn" prefWidth="220" text="Tytuł"/>
+            <TableColumn fx:id="availIsbnColumn" prefWidth="130" text="ISBN"/>
+            <TableColumn fx:id="availPublisherColumn" prefWidth="180" text="Wydawnictwo"/>
+            <TableColumn fx:id="availGenreColumn" prefWidth="150" text="Gatunek"/>
+            <TableColumn fx:id="availLocationColumn" prefWidth="180" text="Lokalizacja"/>
+        </columns>
+    </TableView>
 
 </VBox>

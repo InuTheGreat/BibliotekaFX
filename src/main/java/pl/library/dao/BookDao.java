@@ -138,4 +138,73 @@ public class BookDao {
             throw new RuntimeException(e);
         }
     }
+
+    public List<BookView> getAvailableBooks() {
+
+        String sql = """
+            SELECT
+                b.id,
+                b.title,
+                b.isbn,
+                b.publication_year,
+                b.available,
+                b.pages,
+                p.id AS publisher_id,
+                p.name AS publisher_name,
+                l.id AS location_id,
+                l.section,
+                l.shelf,
+                l.rack,
+                g.id AS genre_id,
+                g.name AS genre_name
+            FROM book b
+            LEFT JOIN publisher p ON p.id = b.publisher_id
+            LEFT JOIN location l ON l.id = b.location_id
+            LEFT JOIN genre g ON g.id = b.genre_id
+            WHERE b.available = 1
+            """;
+
+        List<BookView> list = new ArrayList<>();
+
+        try (Connection connection = ConnectionDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Book foundBook = new Book(
+                        rs.getInt("id"),
+                        rs.getString("title"),
+                        rs.getString("isbn"),
+                        rs.getInt("publication_year"),
+                        rs.getInt("pages"),
+                        rs.getInt("available") == 1,
+                        rs.getInt("publisher_id"),
+                        rs.getInt("location_id"),
+                        rs.getInt("genre_id")
+                );
+
+                Publisher foundPublisher = new Publisher(
+                        rs.getInt("publisher_id"),
+                        rs.getString("publisher_name")
+                );
+
+                Location foundLocation = new Location(
+                        rs.getInt("location_id"),
+                        rs.getString("section"),
+                        rs.getString("shelf"),
+                        rs.getString("rack")
+                );
+
+                Genre foundGenre = new Genre(rs.getInt("genre_id"), rs.getString("genre_name"));
+
+                list.add(BookMapper.toBookView(foundBook, foundLocation, foundGenre, foundPublisher));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
 }
