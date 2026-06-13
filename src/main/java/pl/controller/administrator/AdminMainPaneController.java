@@ -30,6 +30,9 @@ public class AdminMainPaneController {
     private Button bookBtnId;
 
     @FXML
+    private Button borrowingBtnId;
+
+    @FXML
     public void initialize() {
         authorBtnId.addEventHandler(ActionEvent.ACTION, e ->{
             mainController.loadViewCenter("/fxml/administrator/author/authors.fxml");
@@ -45,6 +48,10 @@ public class AdminMainPaneController {
 
         bookBtnId.addEventHandler(ActionEvent.ACTION, e -> {
             mainController.loadViewCenter("/fxml/administrator/book/books.fxml");
+        });
+
+        borrowingBtnId.addEventHandler(ActionEvent.ACTION, e -> {
+            mainController.loadViewCenter("/fxml/administrator/borrowings.fxml");
         });
     }
 }

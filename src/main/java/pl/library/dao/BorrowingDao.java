@@ -1,6 +1,7 @@
 package pl.library.dao;
 
 import pl.ConnectionDB;
+import pl.library.dto.BorrowingView;
 import pl.library.model.Borrowing;
 
 import java.sql.*;
@@ -21,7 +22,6 @@ public class BorrowingDao {
             connection.setAutoCommit(false);
 
             try {
-                // sprawdź czy wszystkie książki są dostępne
                 try (PreparedStatement psCheck = connection.prepareStatement(sqlCheck)) {
                     for (Integer bookId : bookIds) {
                         psCheck.setInt(1, bookId);
@@ -32,7 +32,6 @@ public class BorrowingDao {
                     }
                 }
 
-                // dodaj wypożyczenie
                 try (PreparedStatement ps = connection.prepareStatement(sqlBorrowing, Statement.RETURN_GENERATED_KEYS)) {
                     ps.setInt(1, readerId);
                     ps.setDate(2, Date.valueOf(LocalDate.now()));
@@ -45,7 +44,6 @@ public class BorrowingDao {
                     }
                 }
 
-                // oznacz książki jako niedostępne
                 try (PreparedStatement psUpdate = connection.prepareStatement(sqlUpdateBook)) {
                     for (Integer bookId : bookIds) {
                         psUpdate.setInt(1, bookId);
@@ -117,5 +115,81 @@ public class BorrowingDao {
         }
 
         return borrowings;
+    }
+
+    public List<BorrowingView> getActiveBorrowings() {
+
+        String sql = """
+                SELECT bb.borrowing_id, bb.book_id,
+                       b.borrow_date,
+                       bk.title, bk.isbn,
+                       r.first_name, r.last_name, r.email
+                FROM borrowing_book bb
+                JOIN borrowing b ON b.id = bb.borrowing_id
+                JOIN book bk ON bk.id = bb.book_id
+                JOIN reader r ON r.id = b.reader_id
+                WHERE bb.return_date IS NULL
+                """;
+
+        List<BorrowingView> list = new ArrayList<>();
+
+        try (Connection connection = ConnectionDB.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(new BorrowingView(
+                        rs.getInt("borrowing_id"),
+                        rs.getInt("book_id"),
+                        rs.getString("title"),
+                        rs.getString("isbn"),
+                        rs.getDate("borrow_date").toLocalDate(),
+                        rs.getString("first_name") + " " + rs.getString("last_name"),
+                        rs.getString("email")
+                ));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+    public void returnBook(int borrowingId, int bookId) {
+
+        String sqlReturn = "UPDATE borrowing_book SET return_date = ? WHERE borrowing_id = ? AND book_id = ?";
+        String sqlAvailable = "UPDATE book SET available = 1 WHERE id = ?";
+
+        try (Connection connection = ConnectionDB.getConnection()) {
+
+            connection.setAutoCommit(false);
+
+            try {
+                try (PreparedStatement ps = connection.prepareStatement(sqlReturn)) {
+                    ps.setDate(1, Date.valueOf(LocalDate.now()));
+                    ps.setInt(2, borrowingId);
+                    ps.setInt(3, bookId);
+                    ps.executeUpdate();
+                }
+
+                try (PreparedStatement ps = connection.prepareStatement(sqlAvailable)) {
+                    ps.setInt(1, bookId);
+                    ps.executeUpdate();
+                }
+
+                connection.commit();
+
+            } catch (Exception e) {
+                connection.rollback();
+                throw new RuntimeException(e);
+            } finally {
+                connection.setAutoCommit(true);
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
