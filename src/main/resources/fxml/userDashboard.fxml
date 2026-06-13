@@ -1,17 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            prefHeight="400.0" prefWidth="600.0">
+<VBox alignment="TOP_CENTER" spacing="20"
+      xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pl.controller.UserDashboardController">
 
-    <children>
-        <Label text="USER PANEL"
-               layoutX="200"
-               layoutY="180"
-               style="-fx-font-size: 24px; -fx-font-weight: bold;" />
-    </children>
+    <padding>
+        <Insets bottom="30" left="30" right="30" top="30"/>
+    </padding>
 
-</AnchorPane>
+    <Label text="Panel Użytkownika">
+        <font>
+            <Font size="24"/>
+        </font>
+    </Label>
+
+    <Label text="Dostępne książki">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Label>
+
+    <TableView fx:id="booksTableView" prefHeight="300" maxWidth="Infinity">
+        <columns>
+            <TableColumn fx:id="bookIdColumn" prefWidth="60" text="ID"/>
+            <TableColumn fx:id="titleColumn" prefWidth="250" text="Tytuł"/>
+            <TableColumn fx:id="isbnColumn" prefWidth="150" text="ISBN"/>
+            <TableColumn fx:id="publisherColumn" prefWidth="180" text="Wydawnictwo"/>
+            <TableColumn fx:id="genreColumn" prefWidth="150" text="Gatunek"/>
+            <TableColumn fx:id="availableColumn" prefWidth="100" text="Dostępna"/>
+        </columns>
+    </TableView>
+
+    <Button fx:id="borrowBtn" prefWidth="160" prefHeight="40" text="Wypożycz książkę"/>
+
+    <Label text="Moje wypożyczenia">
+        <font>
+            <Font size="16"/>
+        </font>
+    </Label>
+
+    <TableView fx:id="borrowingsTableView" prefHeight="200" maxWidth="Infinity">
+        <columns>
+            <TableColumn fx:id="borTitleColumn" prefWidth="250" text="Tytuł"/>
+            <TableColumn fx:id="borIsbnColumn" prefWidth="150" text="ISBN"/>
+            <TableColumn fx:id="borDateColumn" prefWidth="150" text="Data wypożyczenia"/>
+            <TableColumn fx:id="borReturnColumn" prefWidth="150" text="Data zwrotu"/>
+        </columns>
+    </TableView>
+
+</VBox>
