@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import pl.controller.MainController;
+import pl.controller.pane.top.generator.GeneratePrefixUser;
 import pl.controller.pane.top.setup.SetupController;
 import pl.library.model.User;
 import pl.session.UserSession;
@@ -49,7 +50,7 @@ public class PaneTopController {
         });
         logOutBtn.setOnAction(e -> logout());
 
-        nameLabelId.setText("Witaj, " + UserSession.getUser().getName());
+        nameLabelId.setText(GeneratePrefixUser.generatePrefixForTopPanel() + UserSession.getUser().getName());
     }
 
     private void openPasswordWindow() {

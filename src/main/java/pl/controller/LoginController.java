@@ -115,12 +115,7 @@ public class LoginController {
 
         alert.setContentText(error);
         Optional<ButtonType> result = alert.showAndWait();
-//
     }
 
-    private void close() {
-        Stage stage = (Stage) loginFieldId.getScene().getWindow();
-        stage.close();
-    }
 
 }
