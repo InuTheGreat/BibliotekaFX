@@ -5,6 +5,7 @@ module biblioteka.projekt {
     //requires biblioteka.projekt;
     requires javafx.base;
     requires javafx.graphics;
+    requires jbcrypt;
     //requires biblioteka.projekt;
     //requires biblioteka.projekt;
 

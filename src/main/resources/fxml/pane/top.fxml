@@ -42,7 +42,7 @@
             <Font size="18.0" />
          </font>
           <padding>
-              <Insets right="200.0"/>
+              <Insets right="150.0"/>
           </padding>
       </Label>
   </items>
