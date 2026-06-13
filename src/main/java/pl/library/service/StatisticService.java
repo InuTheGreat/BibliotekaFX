@@ -1,6 +1,9 @@
 package pl.library.service;
 
+import pl.library.dao.help.MonthView;
 import pl.library.dao.utility.StatisticDao;
+
+import java.util.List;
 
 public class StatisticService {
 
@@ -14,5 +17,10 @@ public class StatisticService {
     public int getAllBorrowCount() {
 
         return statisticDao.getBorrowValue();
+    }
+
+    public List<MonthView> getMonthResumeBorrow() {
+
+        return statisticDao.getBorrowStatsByMonth();
     }
 }

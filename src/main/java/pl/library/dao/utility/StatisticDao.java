@@ -1,6 +1,7 @@
 package pl.library.dao.utility;
 
 import pl.ConnectionDB;
+import pl.library.dao.help.MonthView;
 import pl.library.model.Author;
 
 import java.sql.Connection;
@@ -52,5 +53,34 @@ public class StatisticDao {
             throw new RuntimeException(e);
         }
         return count;
+    }
+
+    public List<MonthView> getBorrowStatsByMonth() {
+
+        String sql = """
+            SELECT MONTH(borrow_date) AS month, COUNT(*) AS total
+            FROM borrowing
+            GROUP BY MONTH(borrow_date)
+            ORDER BY month
+         """;
+
+        List<MonthView> listMonthTotal = new ArrayList<>();
+
+        try (Connection conn = ConnectionDB.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                listMonthTotal.add(new MonthView(
+                        rs.getInt("month"),
+                        rs.getInt("total")
+                ));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return listMonthTotal;
     }
 }
