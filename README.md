@@ -24,11 +24,16 @@ biblioteka_projekt/
     │       ├── controller/
     │       │   ├── LoginController.java      # obsługa logowania
     │       │   ├── MainController.java       # główny kontroler aplikacji
+    │       │   ├── UserDashboardController.java  # kontroler panelu użytkownika
     │       │   ├── administrator/
     │       │   │   ├── AdminMainPaneController.java
+    │       │   │   ├── BorrowingController.java
     │       │   │   ├── author/
     │       │   │   │   ├── AuthorAddController.java
     │       │   │   │   └── AuthorController.java
+    │       │   │   ├── book/
+    │       │   │   │   ├── BookController.java
+    │       │   │   │   └── BookAddController.java
     │       │   │   ├── genre/
     │       │   │   │   └── GenreController.java
     │       │   │   └── publisher/
@@ -44,14 +49,25 @@ biblioteka_projekt/
     │       │   ├── Main.java                     # punkt startowy aplikacji
     │       │   ├── dao/
     │       │   │   ├── AuthorDao.java
+    │       │   │   ├── BookDao.java
+    │       │   │   ├── BorrowingDao.java
     │       │   │   ├── GenreDao.java
+    │       │   │   ├── LocationDao.java
     │       │   │   ├── PublisherDao.java
     │       │   │   └── UserDao.java
+    │       │   ├── mapper/
+    │       │   │   └── BookMapper.java               # mapowanie Book -> BookView
     │       │   ├── model/
     │       │   │   ├── Author.java
+    │       │   │   ├── Book.java
+    │       │   │   ├── Borrowing.java
     │       │   │   ├── Genre.java
+    │       │   │   ├── Location.java
     │       │   │   ├── Publisher.java
     │       │   │   └── User.java
+    │       │   ├── dto/
+    │       │   │   ├── BookView.java                 # widok książki z powiązanymi danymi
+    │       │   │   └── BorrowingView.java            # widok wypożyczenia z danymi czytelnika
     │       │   └── service/
     │       │       ├── password/
     │       │       │   └── UserPassword.java         # logika zmiany hasła
@@ -66,10 +82,14 @@ biblioteka_projekt/
             │   ├── author/
             │   │   ├── addAuthor.fxml            # formularz dodawania autora
             │   │   └── authors.fxml              # widok listy autorów
+            │   ├── book/
+            │   │   ├── addBooks.fxml             # formularz dodawania książki
+            │   │   └── books.fxml                # widok listy książek
             │   ├── genre/
             │   │   └── genres.fxml               # widok listy gatunków
             │   ├── publisher/
             │   │   └── publishers.fxml           # widok listy wydawnictw
+            │   ├── borrowings.fxml               # widok statusu książek i wypożyczeń
             │   └── adminDashboard.fxml           # dashboard administratora
             ├── pane/
             │   ├── setup/
