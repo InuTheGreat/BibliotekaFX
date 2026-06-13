@@ -1,12 +1,12 @@
 package pl.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import pl.library.dto.UserView;
 import pl.library.service.UserService;
+
+import java.util.Optional;
 
 public class RegisterController {
 
@@ -47,17 +47,24 @@ public class RegisterController {
                 pass == null || pass.isBlank()) {
 
             System.out.println("Uzupełnij wszystkie pola");
+
+            popWindow("Uzupełnij wszystkie pola");
             return;
         }
 
         if (!pass.equals(repeat)) {
             System.out.println("Hasła się nie zgadzają");
+
+            popWindow("Hasła się nie zgadzają");
             return;
         }
 
         if(userService.isUserExistByEmail(login)) {
 
             System.out.println("Błąd utworzenia konta");
+
+            popWindow("Błąd utworzenia konta");
+
             return;
         }
 
@@ -66,6 +73,8 @@ public class RegisterController {
         if(newUser == null) {
 
             System.out.println("Błąd utworzenia konta");
+
+            popWindow("Błąd utworzenia konta");
             return;
         }
 
@@ -76,5 +85,15 @@ public class RegisterController {
     private void close() {
         Stage stage = (Stage) firstNameField.getScene().getWindow();
         stage.close();
+    }
+
+    private void popWindow(String error) {
+
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Confirm action");
+
+        alert.setContentText(error);
+        Optional<ButtonType> result = alert.showAndWait();
+
     }
 }
