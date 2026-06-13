@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
+<?import javafx.scene.control.PasswordField?>
 <Pane fx:id="paneId" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.controller.LoginController">
    <children>
       <VBox prefHeight="300.0" prefWidth="250.0">
@@ -34,16 +34,24 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="passwordFieldId">
+                  <PasswordField fx:id="passwordFieldId">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
-                  </TextField>
+                  </PasswordField>
                </children>
             </HBox>
             <HBox fx:id="loginId" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="loginButtonId" mnemonicParsing="false" text="Login" />
+                  <Button fx:id="loginButtonId" mnemonicParsing="false" text="Login">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin></Button>
+                   
+                   <Button fx:id="registerButtonId" mnemonicParsing="false" text="Register">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
          </children>

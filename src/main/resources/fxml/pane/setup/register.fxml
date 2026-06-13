@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane prefHeight="250.0" prefWidth="300.0"
+      xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pl.controller.RegisterController">
+
+    <children>
+        <VBox spacing="10.0" layoutX="20" layoutY="20">
+
+            <VBox spacing="10.0" layoutX="20" layoutY="20">
+
+                <TextField fx:id="firstNameField" promptText="Imię" />
+
+                <TextField fx:id="lastNameField" promptText="Nazwisko" />
+
+                <TextField fx:id="loginField" promptText="Login (lub email)" />
+
+                <PasswordField fx:id="passwordField" promptText="Hasło" />
+
+                <PasswordField fx:id="repeatPasswordField" promptText="Powtórz hasło" />
+
+                <Button fx:id="registerButton" text="Zarejestruj" />
+
+            </VBox>
+
+        </VBox>
+    </children>
+</Pane>

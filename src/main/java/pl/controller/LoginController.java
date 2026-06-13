@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -30,15 +31,22 @@ public class LoginController {
     private HBox loginId;
 
     @FXML
+    private Button registerButtonId;
+
+    @FXML
     private Pane paneId;
 
     @FXML
-    private TextField passwordFieldId;
+    private PasswordField passwordFieldId;
 
     @FXML
     public void initialize() {
         loginButtonId.addEventHandler(ActionEvent.ACTION, e ->{
             loginUser();
+        });
+
+        registerButtonId.addEventHandler(ActionEvent.ACTION, e -> {
+            openRegisterWindow();
         });
     }
     public void loginUser() {
@@ -70,6 +78,26 @@ public class LoginController {
             stage.setScene(new Scene(root));
             stage.setMaximized(true);
             stage.setTitle("Library v0.1.1");
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void openRegisterWindow() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/fxml/pane/setup/register.fxml")
+            );
+
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Register account");
+
+            stage.setResizable(false);
+            stage.show();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
