@@ -5,17 +5,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import pl.library.model.User;
 import pl.library.service.UserService;
 import pl.session.UserSession;
-
+import javafx.scene.control.*;
 import java.io.IOException;
+import java.util.Optional;
+
 
 public class LoginController {
 
@@ -58,7 +58,11 @@ public class LoginController {
             openMain(user);
         } else {
             System.out.println("Błąd logowania");
+
+            popWindow("Błąd logowania");
+
         }
+
 
     }
 
@@ -77,7 +81,7 @@ public class LoginController {
             Stage stage = (Stage) loginFieldId.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setMaximized(true);
-            stage.setTitle("Library v0.1.1");
+            stage.setTitle("Library v3.2.8");
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -103,5 +107,15 @@ public class LoginController {
             throw new RuntimeException(e);
         }
     }
+
+    private void popWindow(String error) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirm action");
+
+        alert.setContentText(error);
+        Optional<ButtonType> result = alert.showAndWait();
+    }
+
 
 }
